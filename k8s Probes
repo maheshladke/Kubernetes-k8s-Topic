@@ -1,0 +1,66 @@
+𝐋𝐢𝐯𝐞𝐧𝐞𝐬𝐬, 𝐑𝐞𝐚𝐝𝐢𝐧𝐞𝐬𝐬, 𝐚𝐧𝐝 𝐒𝐭𝐚𝐫𝐭𝐮𝐩 𝐏𝐫𝐨𝐛𝐞𝐬 
+
+
+Applications can become 𝐢𝐧𝐜𝐨𝐧𝐬𝐢𝐬𝐭𝐞𝐧𝐭 for a variety of reasons such as temporary connection loss, configuration errors etc.
+You can use probes to keep an eye on your applications. Probes let you know about things like the applications status, resources it's using, and any other errors.
+
+𝐃𝐞𝐟𝐢𝐧𝐢𝐭𝐢𝐨𝐧:
+A probe is a periodic check that monitors the 𝐡𝐞𝐚𝐥𝐭𝐡 of the application. You can configure probes either using kubectl command line or YAML deployment template.
+
+Three Types of probes includes:
+
+🔹𝐒𝐭𝐚𝐫𝐭𝐮𝐩 𝐏𝐫𝐨𝐛𝐞
+🔹𝐋𝐢𝐯𝐞𝐧𝐞𝐬𝐬 𝐏𝐫𝐨𝐛𝐞
+🔹𝐑𝐞𝐚𝐝𝐢𝐧𝐞𝐬𝐬 𝐏𝐫𝐨𝐛𝐞
+
+Let us discuss each probe in detail.
+
+𝟏. 𝐒𝐭𝐚𝐫𝐭𝐮𝐩 𝐏𝐫𝐨𝐛𝐞
+A startup probe verifies whether the 𝐚𝐩𝐩𝐥𝐢𝐜𝐚𝐭𝐢𝐨𝐧 within the container is started. Startup probes runs 𝐛𝐞𝐟𝐨𝐫𝐞 any other probe and 𝐝𝐢𝐬𝐚𝐛𝐥𝐞𝐬 any other probes till this probe is completed successfully.
+This type of probe is only executed at startup, unlike readiness probes, which are run periodically.
+```
+startupProbe:
+ httpGet:
+ path: /healthz
+ port: 8080
+ failureThreshold: 30
+ periodSeconds: 10
+```
+
+𝟐. 𝐋𝐢𝐯𝐞𝐧𝐞𝐬𝐬 𝐏𝐫𝐨𝐛𝐞
+Liveness probes determine whether or not an application running in a container is in a 𝐡𝐞𝐚𝐥𝐭𝐡𝐲 state. If the liveness probe detects an unhealthy state, then Kubernetes kills the container and tries to 𝐫𝐞𝐝𝐞𝐩𝐥𝐨𝐲 it.
+They can help ensure that your application remains available by automatically restarting failed containers.
+```
+livenessProbe:
+ httpGet:
+ path: /healthz
+ port: 8080
+ initialDelaySeconds: 15
+ periodSeconds: 20
+```
+
+𝟑. 𝐑𝐞𝐚𝐝𝐢𝐧𝐞𝐬𝐬 𝐏𝐫𝐨𝐛𝐞
+Readiness probes determine whether or not a container is 𝐫𝐞𝐚𝐝𝐲 𝐭𝐨 𝐬𝐞𝐫𝐯𝐞 𝐫𝐞𝐪𝐮𝐞𝐬𝐭𝐬. If the readiness probe returns a failed state, then Kubernetes removes the 𝐈𝐏 𝐚𝐝𝐝𝐫𝐞𝐬𝐬 for the container from the endpoints of all Services.
+Kubernetes relies on the readiness probes during rolling updates, it keeps the 𝐨𝐥𝐝 𝐜𝐨𝐧𝐭𝐚𝐢𝐧𝐞𝐫 𝐮𝐩 𝐚𝐧𝐝 𝐫𝐮𝐧𝐧𝐢𝐧𝐠 until the new service declares that it is ready to take traffic.
+```
+readinessProbe:
+ httpGet:
+ path: /ready
+ port: 8080
+ initialDelaySeconds: 5
+ periodSeconds: 10
+```
+
+𝐀𝐥𝐥 𝐭𝐡𝐫𝐞𝐞 𝐭𝐲𝐩𝐞𝐬 𝐨𝐟 𝐩𝐫𝐨𝐛𝐞𝐬 𝐡𝐚𝐯𝐞 𝐜𝐨𝐦𝐦𝐨𝐧 𝐬𝐞𝐭𝐭𝐢𝐧𝐠𝐬 𝐭𝐨 𝐜𝐨𝐧𝐟𝐢𝐠𝐮𝐫𝐞.
+
+𝐢𝐧𝐢𝐭𝐢𝐚𝐥𝐃𝐞𝐥𝐚𝐲𝐒𝐞𝐜𝐨𝐧𝐝𝐬: How many seconds to wait after the container has started.
+𝐩𝐞𝐫𝐢𝐨𝐝𝐒𝐞𝐜𝐨𝐧𝐝𝐬: Wait time between probe executions.
+𝐭𝐢𝐦𝐞𝐨𝐮𝐭𝐒𝐞𝐜𝐨𝐧𝐝𝐬: Timeout of the probe.
+𝐬𝐮𝐜𝐜𝐞𝐬𝐬𝐓𝐡𝐫𝐞𝐬𝐡𝐨𝐥𝐝: Threshold needed to mark the container healthy.
+𝐟𝐚𝐢𝐥𝐮𝐫𝐞𝐓𝐡𝐫𝐞𝐬𝐡𝐨𝐥𝐝: Threshold needed to mark the container unhealthy.
+
+Liveness probe--> on failure --> restart container
+readiness probe --> if not ready --> with hold traffic
+startup probe --> on success --> enable liveness and readiness
+
+
