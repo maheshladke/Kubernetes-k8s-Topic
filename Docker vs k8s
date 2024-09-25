@@ -1,0 +1,36 @@
+ Kubernetes vs Docker: What's the Difference? 
+
+Docker is a platform for containerization. It allows you to package applications with their dependencies into containers, making deployment and management simpler.
+
+ Key Features of Docker:
+1.Container creation and management
+2.Dockerfiles for container configuration
+3.Docker Hub for sharing container images
+4.Networking for container communication
+5.Persistent data storage through volumes
+
+Kubernetes (K8s), on the other hand, is a container orchestration platform. It automates the deployment, scaling, and management of containerized applications across multiple hosts.
+
+Key Features of Kubernetes:
+1.Automated container deployment
+2.Self-healing (restarts failed containers)
+3.Horizontal scaling of applications
+4.Load balancing
+5.Rolling updates and rollbacks
+6.Secret and configuration management
+
+ The Relationship Between Docker and Kubernetes:
+Docker creates containers, while Kubernetes manages and orchestrates them at scale.
+
+1.Docker creates the "ships" (containers).
+2.Kubernetes is the "harbor master" that directs where the containers should go, ensures they’re running, and scales them when needed.
+
+⚖️ When to Use Which:
+1.Docker alone: Best for smaller projects or development environments.
+2.Kubernetes: Ideal for large-scale, dynamic applications that need scaling or high availability.
+
+
+
+1.Docker is about containerization.
+2.Kubernetes is about orchestration.
+3.Both work together to run and manage modern cloud-native applications.
