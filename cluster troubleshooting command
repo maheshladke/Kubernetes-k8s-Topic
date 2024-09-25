@@ -1,0 +1,146 @@
+1. Get Cluster Info
+bash
+Copy code
+kubectl cluster-info
+Displays information about the Kubernetes cluster.
+
+2. List All Resources
+bash
+Copy code
+kubectl get all --all-namespaces
+Lists all resources (pods, services, etc.) across all namespaces.
+
+3. Get Pod Details
+List all pods in a specific namespace:
+bash
+Copy code
+kubectl get pods -n <namespace>
+Describe a pod to see events and configuration details:
+bash
+Copy code
+kubectl describe pod <pod-name> -n <namespace>
+View pod logs (helpful for debugging crashes or issues):
+bash
+Copy code
+kubectl logs <pod-name> -n <namespace>
+For multi-container pods, specify the container:
+bash
+Copy code
+kubectl logs <pod-name> -c <container-name> -n <namespace>
+
+4. Checking Pod Status
+Check the status of all pods in a namespace:
+bash
+Copy code
+kubectl get pods -n <namespace>
+Watch the status of pods in real-time:
+bash
+Copy code
+kubectl get pods -n <namespace> --watch
+
+5. Check Events
+bash
+Copy code
+kubectl get events -n <namespace>
+Lists the recent events in a namespace, useful for identifying failures.
+
+6. Get Node Details
+List all nodes in the cluster:
+bash
+Copy code
+kubectl get nodes
+Describe a specific node:
+bash
+Copy code
+kubectl describe node <node-name>
+
+7. Debugging Pods
+If a pod is not starting, exec into the pod:
+bash
+Copy code
+kubectl exec -it <pod-name> -n <namespace> -- /bin/sh
+Or for bash:
+bash
+Copy code
+kubectl exec -it <pod-name> -n <namespace> -- /bin/bash
+
+8. View Resource Utilization
+CPU and memory utilization of nodes:
+bash
+Copy code
+kubectl top nodes
+Resource utilization of pods:
+bash
+Copy code
+kubectl top pods -n <namespace>
+
+9. Checking Service Connectivity
+List services in a namespace:
+bash
+Copy code
+kubectl get svc -n <namespace>
+Describe a specific service:
+bash
+Copy code
+kubectl describe svc <service-name> -n <namespace>
+
+10. Checking DNS Resolution
+Test DNS from within a pod (using busybox):
+bash
+Copy code
+kubectl run -it --rm --image=busybox dns-test --restart=Never -- nslookup <service-name>
+
+11. Check ConfigMaps & Secrets
+List ConfigMaps in a namespace:
+bash
+Copy code
+kubectl get configmap -n <namespace>
+View a specific ConfigMap:
+bash
+Copy code
+kubectl describe configmap <configmap-name> -n <namespace>
+List Secrets in a namespace:
+bash
+Copy code
+kubectl get secrets -n <namespace>
+
+12. Check Persistent Volumes (PVs) and Persistent Volume Claims (PVCs)
+List persistent volumes:
+bash
+Copy code
+kubectl get pv
+List persistent volume claims in a namespace:
+bash
+Copy code
+kubectl get pvc -n <namespace>
+
+13. Check DaemonSet/Deployment/StatefulSet Details
+Check Deployment:
+bash
+Copy code
+kubectl get deployment <deployment-name> -n <namespace>
+kubectl describe deployment <deployment-name> -n <namespace>
+Check DaemonSet:
+bash
+Copy code
+kubectl get daemonset -n <namespace>
+kubectl describe daemonset <daemonset-name> -n <namespace>
+Check StatefulSet:
+bash
+Copy code
+kubectl get statefulset -n <namespace>
+kubectl describe statefulset <statefulset-name> -n <namespace>
+
+14. Debug Network Issues
+Check pod network connectivity:
+bash
+Copy code
+kubectl exec <pod-name> -n <namespace> -- ping <service-ip>
+
+
+15. Interactive Troubleshooting (Kubectl Debug)
+Create a debugging pod with troubleshooting tools:
+bash
+Copy code
+kubectl debug <pod-name> -n <namespace> --image=busybox -- /bin/sh
+These commands should help you troubleshoot and resolve common Kubernetes issues. Let me know if you need help with specific errors or scenarios!
