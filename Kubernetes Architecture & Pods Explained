@@ -1,0 +1,17 @@
+Kubernetes Architecture & Pods Explained :-
+Kubernetes is powerful, but understanding its architecture is key! Here’s a quick breakdown:
+Kubernetes Components:
+Master Node:
+🟢 etcd: Key-value store for cluster data.
+🟢 kube-apiserver: The front end for the control plane.
+🟢 kube-scheduler: Assigns pods to nodes based on resource availability.
+🟢 kube-controller-manager: Manages node health, replication, and more.
+Worker Nodes:
+🟢 kubelet: Manages pods and container runtime.
+🟢 kube-proxy: Manages networking for services.
+
+Understanding Kubernetes Pods vs. Containers:-
+🟢What is a Pod? Explanation of how pods are the smallest deployable units in Kubernetes, consisting of one or more tightly coupled containers.
+🟢Pod vs. Container: Highlight the difference—containers run inside pods, not directly managed by Kubernetes.
+🟢Multi-Container Pods: Explain the use of sidecar containers, sharing the same network and storage resources.
+🟢Use Case: Real-world example of multi-container pod orchestration (e.g., logging, monitoring, or proxying).
