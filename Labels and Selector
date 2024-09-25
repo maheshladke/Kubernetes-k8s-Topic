@@ -1,0 +1,14 @@
+Imagine your Kubernetes cluster as a massive library.
+
+*Labels* are like tags on books (e.g., "mystery", "bestseller"). They help categorize and identify resources.
+*Selectors* are like a librarian searching for books with specific tags. They find resources that match the criteria.
+
+*Why it's useful:*
+- Organize resources efficiently.
+- Easily find and manage specific resources.
+- Automate tasks based on labels.
+
+`kubectl label pod <pod-name> <key>=<value>`
+`kubectl get <object> --show-labels`
+`kubectl get pods -l app=my-app`
+`kubectl label --overwrite pod <pod-name> <key>=<new-value>`
