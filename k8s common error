@@ -1,0 +1,22 @@
+1. ImagePullBackOff: Verify the pull secrets are set correctly and double-check the image name and tag.
+ 2. CrashLoopBackOff: Review the container logs and make any necessary changes to resources or configurations. 
+3. ErrlmageNeverPul: Instead, set the policy for pulling images to Always or IfNotPresent.
+4. ImagePullError: Verify that your credentials and the image repository are accurate. 
+5. InvalidlmageName: Correct any errors in the tag and image name.
+6. DeploymentFailed: Verify that resources are available and review the deployment configuration.
+7. PodNotFound: Verify the accuracy of the pod name and namespace.
+8. ContainerCreating: Review the container setup and verify that the image is reachable. 
+9. DeadlineExceeded: Workload should be streamlined or the pod deadline extended. 
+10. FailedScheduling: Examine the pod's resource requests and node availability.
+11. Failed Validation: Fix any typos or configuration errors.
+12. InvalidConfig: Check the syntax and structure of the configuration file. 
+13. KubeletError: Examine the node's status and kubelet logs.
+14. MemoryLimitExceeded: Increase the memory limit or increase the productivity of the workload. 
+15. NodeNotReady: Check the availability and status of the node. 
+16. NodeUnreachable: Verify the node's network settings and connectivity. 
+17. PodDisruptionBudgetExceeded: Either improve workload management or modify the pod disruption budget.
+18. PodNotReady: Examine the state of the pod and make sure the container is ready. 
+19. ResourceQuotaExceeded: Either optimize the workload or raise the resource quota. 
+20. ServiceUnavailable: Verify that the service configuration is configured correctly.
+
+
